@@ -3,13 +3,15 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.LoginPage;
+import utils.ConfigReader;
 
-public class LoginPageTest extends BaseTest {
+public class LoginTest extends BaseTest {
+    ConfigReader configReader=ConfigReader.getInstance();
 
     @Test
     public void loginWithValidCredentials(){
         LoginPage loginPage=new LoginPage(page);
-        DashboardPage dashboardPage=loginPage.login("Admin","admin123");
+        DashboardPage dashboardPage=loginPage.login(configReader.getProperty("admin.username"), configReader.getProperty("admin.password"));
 
         Assert.assertTrue(dashboardPage.isDashboardVisible());
     }
@@ -17,7 +19,7 @@ public class LoginPageTest extends BaseTest {
     @Test
     public void loginWithInvalidUsername(){
         LoginPage loginPage=new LoginPage(page);
-        loginPage.login("Steve","admin123");
+        loginPage.login("Steve",configReader.getProperty("admin.password"));
 
         Assert.assertTrue(loginPage.getErrorMessage().contains("Invalid credentials"),"Error message not displayed");
     }
@@ -25,8 +27,10 @@ public class LoginPageTest extends BaseTest {
     @Test
     public void loginWithInvalidPassword(){
         LoginPage loginPage=new LoginPage(page);
-        loginPage.login("Admin","Steve");
+        loginPage.login(configReader.getProperty("admin.username"),"Steve");
 
         Assert.assertTrue(loginPage.getErrorMessage().contains("Invalid credentials"),"Error message not displayed");
     }
+
+    //Add method to log in with no credentials,no username and no password
 }

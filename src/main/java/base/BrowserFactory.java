@@ -13,6 +13,8 @@ public class BrowserFactory {
         return browser=playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
     }
 
+    //Implement a switch case in terms of browsers
+
     public void closeBrowser(){
         if (browser!=null){
             browser.close();

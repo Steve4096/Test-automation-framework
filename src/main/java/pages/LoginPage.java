@@ -3,7 +3,6 @@ package pages;
 import base.BasePage;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
-import com.microsoft.playwright.options.AriaRole;
 
 public class LoginPage extends BasePage {
     private final Locator txtUsername;
