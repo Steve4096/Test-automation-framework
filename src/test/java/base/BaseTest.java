@@ -17,7 +17,11 @@ public class BaseTest {
         browserFactory=new BrowserFactory();
         browser=browserFactory.createBrowser();
         page= browser.newPage();
-        page.navigate(configReader.getProperty("OrangeHrm.url"));
+
+        page.setDefaultTimeout(600000);
+        page.setDefaultNavigationTimeout(600000);
+
+        page.navigate(configReader.getProperty("orangeHrm.url"));
     }
 
     @AfterMethod
