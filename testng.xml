@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Regression tests">
+
+    <listeners>
+        <listener class-name="listener.TestListener">
+        </listener>
+    </listeners>
+
+    <test name="PIM Tests">
+        <packages>
+            <package name="tests"></package>
+        </packages>
+    </test>
+
+</suite>
