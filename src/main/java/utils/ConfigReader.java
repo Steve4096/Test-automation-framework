@@ -1,6 +1,5 @@
 package utils;
 
-import javax.imageio.IIOException;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
@@ -8,10 +7,10 @@ import java.util.Properties;
 public class ConfigReader {
     private static ConfigReader configReaderInstance;
     private static final Properties properties=new Properties();
-    private static final String testdataFilePath="src/test/resources/TestData.properties";
+    private static final String testDataFilePath="src/test/resources/TestData.properties";
 
     private ConfigReader(){
-        try(FileInputStream fileInputStream=new FileInputStream(testdataFilePath)) {
+        try(FileInputStream fileInputStream=new FileInputStream(testDataFilePath)) {
             properties.load(fileInputStream);
         }catch (IOException ioException){
             System.out.println("Failed to load properties file");
@@ -35,7 +34,7 @@ public class ConfigReader {
 
     public static void main(String[] args) {
         ConfigReader configReader=ConfigReader.getInstance();
-        String baseUrl= configReader.getProperty("OrangeHrm.url");
+        String baseUrl= configReader.getProperty("orangeHrm.url");
         System.out.println(baseUrl);
     }
 }
