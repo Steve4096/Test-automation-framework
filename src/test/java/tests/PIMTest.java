@@ -3,6 +3,7 @@ package tests;
 import base.BaseTest;
 import com.microsoft.playwright.assertions.LocatorAssertions;
 import net.datafaker.Faker;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.LoginPage;
@@ -18,6 +19,7 @@ public class PIMTest extends BaseTest {
     Faker faker=new Faker();
 
 
+    @BeforeMethod
     public void loginAndOpenAddPage(){
         LoginPage loginPage=new LoginPage(page);
         loginPage.login(configReader.getProperty("admin.username"),configReader.getProperty("admin.password"));
