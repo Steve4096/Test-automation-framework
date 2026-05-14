@@ -4,6 +4,7 @@ import base.BasePage;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.AriaRole;
+import utils.TestManager;
 
 public class PIMPage extends BasePage {
     private final Locator PIMHeader;
@@ -71,23 +72,31 @@ public class PIMPage extends BasePage {
     }
 
     public void saveEmployeeDetails(String firstName, String middleName, String lastName,String id){
+        TestManager.getTest().info("Creating employee: "+firstName+" "+lastName);
         enterFirstName(firstName);
         enterMiddleName(middleName);
         enterLastName(lastName);
         enterEmployeeID(id);
+        TestManager.getTest().info("Saving employee"+firstName+" "+lastName);
         clickSaveButton();
+        TestManager.getTest().info("Saved employee successfully");
     }
 
     public void saveEmployeeDetails(String firstName, String middleName, String id){
+        TestManager.getTest().info("Creating employee: "+firstName);
         enterFirstName(firstName);
         enterMiddleName(middleName);
         enterEmployeeID(id);
         clickSaveButton();
+        TestManager.getTest().info("Missing required field.Can't save employee");
     }
 
     public void saveEmployeeDetails(String middleName, String id){
+        TestManager.getTest().info("Creating employee: "+middleName);
         enterMiddleName(middleName);
         enterEmployeeID(id);
+        TestManager.getTest().info("Saving employee");
         clickSaveButton();
+        TestManager.getTest().info("Missing required field. Can't save employee");
     }
 }
